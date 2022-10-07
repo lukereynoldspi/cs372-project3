@@ -1,6 +1,8 @@
 import socket
 import sys
 
+file_extensions = {'.txt':'text/plain', '.html':'text/html'}
+
 # Checks for arguments, uses port 28333 as a default
 if len(sys.argv) >= 2:
     port = int(sys.argv[1])
