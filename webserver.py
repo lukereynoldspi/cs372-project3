@@ -13,13 +13,16 @@ s = socket.socket()
 s.bind(('', port))
 s.listen()
 
+
+
 # Accepts new connections, listens and decodes data
 while True:
     new_conn = s.accept()
     new_socket = new_conn[0]  # This is what we'll recv/send on
     while True:
         d = new_socket.recv(4096)
-        if "\r\n\r\n" in d.decode("ISO-8859-1"):
+        decoded_data = decoded_data + d.decode("ISO-8859-1")
+        if decoded_data.find("\r\n\r\n"):
             break
     get = ("HTTP/1.1 \r\nContent-Type: text/plain\r\nContent-Length: 6\r\nConnection: close\r\n\r\nHello!")
     new_socket.sendall(get.encode("ISO-8859-1"))
