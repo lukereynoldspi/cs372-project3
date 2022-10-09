@@ -50,7 +50,7 @@ def server_connection():
         try:
             with open(path_file) as fp:
                 data = fp.read()   # Read entire file
-                data = data.encode("ISO-8859-1")
+                data_bytes = data.encode("ISO-8859-1")
                 bytes = len(data_bytes)
 
                 get = ("HTTP/1.1 200 OK\r\nContent-Type: {}\r\nContent-Length: {}\r\n\r\n{}").format(file_extensions[path_extension], bytes, data)
